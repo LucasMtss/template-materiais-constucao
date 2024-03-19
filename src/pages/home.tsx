@@ -8,7 +8,7 @@ export function Home() {
   const {numberOfItems} = useCart();
 
    // Referência para a div da seção
-   const sectionRefs = useRef([]);
+   const sectionRefs = useRef<any[]>([]);
 
    // Função para lidar com o clique no botão e rolar para a seção correspondente
    const scrollToSection = (index: number) => {
