@@ -121,7 +121,7 @@ export default function Cart(){
             
             <Dialog.Portal>
                 <Dialog.Overlay className='inset-0 fixed bg-black/50'/>
-                <Dialog.Content className='overflow-hidden fixed inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:h-[60vh] md:max-w-[640px] w-full bg-slate-700 md:rounded-md flex flex-col outline-none'>
+                <Dialog.Content className='overflow-hidden fixed inset-0 md:inset-auto md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:h-[60vh] md:max-w-[640px] w-full bg-slate-100 md:rounded-md flex flex-col outline-none'>
                     <div className="flex flex-1 justify-between flex-col">
                     <h1 className="w-full text-center text-2xl sm:mt-5 mt-10">Deseja excluir esse item?</h1>
                     <div  className="flex justify-end gap-5 py-3 px-3 flex-col">
