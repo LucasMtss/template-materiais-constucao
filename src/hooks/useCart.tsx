@@ -3,7 +3,7 @@ import { ProductProps } from '../utils/data/products';
 
 interface ICartItem {
     product: ProductProps;
-    quantity: number
+    quantity: number;
 }
 
 interface ICartContextProps {
@@ -38,20 +38,20 @@ export function CartProvider({ children }: PropsWithChildren<ICartContext>) {
   
     const addToCart = (product: ProductProps) => {
       const existingItemIndex = cartItems.findIndex(item => item.product.id === product.id);
+      let updatedCartItems = [...cartItems];
       if (existingItemIndex !== -1) {
-        const updatedCartItems = [...cartItems];
         updatedCartItems[existingItemIndex].quantity += 1;
-        setCartItems(updatedCartItems);
       } else {
-        setCartItems([...cartItems, { product, quantity: 1 }]);
+        updatedCartItems = [...updatedCartItems, { product, quantity: 1 }];
       }
-      setNumberOfItems(cartItems.reduce((total, item) => total + item.quantity, 0));
-      setTotalValue(cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0));
-      localStorage.setItem('@delivery/cartItems', JSON.stringify(cartItems));
+      setCartItems(updatedCartItems);
+      setNumberOfItems(updatedCartItems.reduce((total, item) => total + item.quantity, 0));
+      setTotalValue(updatedCartItems.reduce((total, item) => total + item.quantity * item.product.price, 0));
+      localStorage.setItem('@delivery/cartItems', JSON.stringify(updatedCartItems));
     };
   
     const removeItem = (productId: string) => {
-      const updatedCartItems = cartItems.map(item => {
+      let updatedCartItems = cartItems.map(item => {
         if(productId === item.product.id){
             return {
                 ...item,
@@ -60,10 +60,11 @@ export function CartProvider({ children }: PropsWithChildren<ICartContext>) {
         }
         return item;
       });
-      setCartItems(updatedCartItems.filter(item => item.quantity > 0));
-      setNumberOfItems(cartItems.reduce((total, item) => total + item.quantity, 0));
-      setTotalValue(cartItems.reduce((total, item) => total + item.quantity * item.product.price, 0));
-      localStorage.setItem('@delivery/cartItems', JSON.stringify(cartItems));
+      updatedCartItems = updatedCartItems.filter(item => item.quantity > 0);
+      setCartItems(updatedCartItems);
+      setNumberOfItems(updatedCartItems.reduce((total, item) => total + item.quantity, 0));
+      setTotalValue(updatedCartItems.reduce((total, item) => total + item.quantity * item.product.price, 0));
+      localStorage.setItem('@delivery/cartItems', JSON.stringify(updatedCartItems));
     };
 
     const clearCart = () => {
