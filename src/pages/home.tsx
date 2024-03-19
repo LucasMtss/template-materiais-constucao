@@ -18,7 +18,7 @@ export function Home() {
   return (
     <div className='mx-auto max-w-6xl my-12 space-y-6 px-5'>
       <Header title='Escolha seu pedido' cartQuatityItems={numberOfItems}/>
-      <div className='flex gap-2 items-center pl-5 overflow-x-scroll pb-2'>
+      <div className='flex gap-2 items-center pl-5 overflow-x-scroll py-5 no-scrollbar'>
         {
           MENU.map((section, index) => {
             return (
